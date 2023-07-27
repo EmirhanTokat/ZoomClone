@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zoom_clone/screens/history_meeting_screen.dart';
+import 'package:zoom_clone/screens/meeting_screen.dart';
 import 'package:zoom_clone/utils/colors.dart';
 import 'package:zoom_clone/widgets/home_meeting_button.dart';
 
@@ -17,6 +19,13 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  List<Widget> pages = [
+    const MeetingScreen(),
+    const HistoryMeetingScreen(),
+    const Text("Contacts"),
+    const Text("Settings"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,19 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text("Meet & Chat"),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              HomeMeetingButton(
-                onPressed: () {},
-                text: "New Meeting",
-                icon: Icons.videocam,
-              ),
-            ],
-          ),
-        ],
-      ),
+      body: pages[_page],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: footerColor,
         selectedItemColor: Colors.white,
@@ -59,12 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.lock_clock,
             ),
             label: "Meetings",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.comment_bank,
-            ),
-            label: "Meet & Char",
           ),
           BottomNavigationBarItem(
             icon: Icon(
