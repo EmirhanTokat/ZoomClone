@@ -1,8 +1,22 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:zoom_clone/resources/jitsi_meet_methods.dart';
 import 'package:zoom_clone/widgets/home_meeting_button.dart';
 
 class MeetingScreen extends StatelessWidget {
-  const MeetingScreen({super.key});
+ MeetingScreen({super.key});
+ 
+ final JitsiMeetMethods _jitsiMeetMethods = JitsiMeetMethods();
+ createNewMeeting() async{
+  var random = Random();
+  String roomName = (random.nextInt(10000000) + 10000000).toString();
+  _jitsiMeetMethods.createMeeting(roomName: roomName, IsAudioMuted: true, isVideoMuted: true);
+  }
+
+  joimMeeting(BuildContext context) {
+    Navigator.pushNamed(context, "/video-call");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +26,12 @@ class MeetingScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             HomeMeetingButton(
-              onPressed: () {},
+              onPressed: createNewMeeting,
               text: "New Meeting",
               icon: Icons.videocam,
             ),
             HomeMeetingButton(
-              onPressed: () {},
+              onPressed: () =>joimMeeting(context),
               text: "Join Meeting",
               icon: Icons.add_box_rounded,
             ),
