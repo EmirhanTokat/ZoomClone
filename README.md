@@ -1,6 +1,6 @@
 # zoom_clone
 
-A new Flutter project.
+Flutter Zoom CLone App
 
 ## Getting Started
 
